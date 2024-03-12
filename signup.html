@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>CompanyCo - Your Online Shopping Destination</title>
+</head>
+<body>
+    <!-- Header Section -->
+    <header class="header">
+        <div class="logo">
+            <img src="logo.png" alt="Company Logo">
+        </div>
+        <div class="company-name">
+            Company Name
+        </div>
+    </header>
+
+    <!-- Navigation Section -->
+    <nav>
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="products.html" class="nav-link">Products</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+        <a href="login.html" class="nav-link">Login</a> 
+    </nav>
+
+    <main>
+        <form id="signupForm">
+          <label for="username">Username</label>
+          <input type="text" id="username" name="username" placeholder="Username" required pattern="[A-Za-z][A-Za-z0-9_-]{2,19}">
+      
+          <label for="password">Password</label>
+          <input type="password" id="password" name="password" placeholder="Password" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&amp;*()\-_=+\[\]{}|;:'&quot;,.<>?/`~])(?!.*\s).{8,}">
+
+      
+          <label for="confirmPassword">Confirm Password</label>
+          <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm Password" required>
+      
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" placeholder="Email" required>
+      
+          <button type="submit">Signup</button>
+        </form>
+      </main>
+      <div id="messageBox">
+        <p id="message"></p>
+      </div>
+      
+    <footer class="footer">
+        <p>&copy; 2024 Companyco. All rights reserved.</p>
+    </footer>
+
+    <script>
+        document.getElementById('signupForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+            const email = document.getElementById('email').value;
+            let message = '';
+
+            const usernameRegex = /^[A-Za-z][A-Za-z0-9_-]{2,19}$/;
+            const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()-_=+\[\]{}|;:'",.<>?/`~]).{8,}$/;
+
+            if (!usernameRegex.test(username)) {
+                message += 'Username is invalid. ';
+            }
+            if (!passwordRegex.test(password)) {
+                message += 'Password is invalid. ';
+            }
+            if (password !== confirmPassword) {
+                message += 'Passwords do not match. ';
+            }
+
+            if (message === '') {
+                message = 'Signup successful!';
+                document.getElementById('messageBox').style.borderColor = 'green';
+            } else {
+                document.getElementById('messageBox').style.borderColor = 'red';
+            }
+
+            document.getElementById('message').innerText = message;
+            document.getElementById('messageBox').style.display = 'block';
+        });
+
+
+    </script>
+
+</body>
+</html>
